@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { useState, useEffect } from "react";
+import Item from "./Item";
+import ItemList from "./ItemList";
 
 const styleTitle={ 
     color: 'DarkGray', 
@@ -8,9 +10,26 @@ const styleTitle={
 
 function ItemListContainer({ title }){
 
+  const [list, setList] = useState([]);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    Item().then(
+      result => {
+        setList(result);
+      },
+      err => {
+        setError(err);
+      }
+    );
+  }, []);
+
   return <> 
     <p><spam style={styleTitle} >{title}</spam></p>
+    {error && <p>{error}</p>}
+    <ItemList productos={list}/>
     </>
+
 
   
 }
