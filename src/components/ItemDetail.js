@@ -27,7 +27,7 @@ function ItemDetail({ producto }){
                 <td>{p.id} </td>
                 <td>{p.title}</td>
                 <td>{p.price}</td>
-                <td><img src={p.pictureUrl} alt={p.title} height={200} width={200} /> </td>
+                <td><img src={p.pictureUrl} alt={p.title} height={150} width={150} /> </td>
                 <td><ItemCount stock={10} initial={0} onAdd={onAdd}/> </td>
                 </tr>
             ))}   
