@@ -5,23 +5,20 @@ import NavBar from './components/NavBar'
 import ItemListContainer from './components/ItemListContainer'
 import ItemDetailContainer from './components/ItemDetailContainer';
 
+
 import {BrowserRouter, Switch, Route } from 'react-router-dom';
 
 function App() {
-
-
-
   return (
     <>
       <NavBar />
-
       <BrowserRouter>
         <Switch>
-            <Route path="/">
+            <Route exact path="/">
               <ItemListContainer title="Tienda online" />
             </Route>
           
-            <Route path="/item/:id">
+            <Route exact path="/item/:id">
               <ItemDetailContainer />
             </Route>  
         </Switch>  

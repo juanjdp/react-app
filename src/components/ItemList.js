@@ -1,8 +1,12 @@
 import React from "react";
 import Table from 'react-bootstrap/Table'
+import { NavLink } from 'react-router-dom'
+
+
 import "../index.css"; 
 
 function ItemList({ productos }){
+
 
   return <> 
         <div>Listado de productos</div>
@@ -17,7 +21,7 @@ function ItemList({ productos }){
         <tbody>
             {productos.map(p => (
                 <tr>
-                <td>{p.id} </td>
+                <td><NavLink to={`/item/${p.id}`} activeClassName="currentCategory">{p.id} </NavLink></td>
                 <td>{p.title}</td>
                 <td>{p.price}</td>
                 </tr>

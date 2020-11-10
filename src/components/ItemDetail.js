@@ -5,6 +5,8 @@ import ItemCount from './ItemCount'
 
 function ItemDetail({ producto }){
 
+    console.log('producto::::::', producto)
+
     function onAdd(contador){
         alert(`Cantidad de productos en el carrito: ${contador}`);
       }
@@ -22,15 +24,15 @@ function ItemDetail({ producto }){
             </tr>
         </thead>
         <tbody>
-            {producto.map(p => (
+            
                 <tr>
-                <td>{p.id} </td>
-                <td>{p.title}</td>
-                <td>{p.price}</td>
-                <td><img src={p.pictureUrl} alt={p.title} height={150} width={150} /> </td>
+                <td>{producto.id} </td>
+                <td>{producto.title}</td>
+                <td>{producto.price}</td>
+                <td><img src={producto.pictureUrl} alt={producto.title} height={150} width={150} /> </td>
                 <td><ItemCount stock={10} initial={0} onAdd={onAdd}/> </td>
                 </tr>
-            ))}   
+              
             </tbody> 
         </Table>        
 
