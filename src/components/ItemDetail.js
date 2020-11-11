@@ -43,11 +43,7 @@ function ItemDetail({ producto }){
                 </tr>
               
             </tbody> 
-        </Table>        
-
-            
+        </Table>             
     </>
-
-  
 }
 export default ItemDetail;
