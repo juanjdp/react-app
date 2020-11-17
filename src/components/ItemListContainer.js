@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import Item from "./Item";
 import ItemList from "./ItemList";
 
+import {getFirestore} from './../firebase/index'
+
 const styleTitle={ 
     color: 'DarkGray', 
     fontFamily: 'Trocchi',  
@@ -14,14 +16,29 @@ function ItemListContainer({ title }){
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    Item().then(
+    const db = getFirestore();
+    const itemCollection = db.collection("items");
+
+    const priceCollections = itemCollection.where('price','<',500);
+
+    priceCollections.get().then((querySnapshot) => {
+      if (querySnapshot.size===0){
+        console.log('No result');
+      };
+      setList(
+        querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }))
+      );
+    })
+
+
+    /*Item().then(
       result => {
         setList(result);
       },
       err => {
         setError(err);
       }
-    );
+    );*/
   }, []);
 
   return <> 
