@@ -15,7 +15,13 @@ function ItemDetail({ producto }){
         setCantidad(contador);
         setOnline(contador > 0 ? false : true);
         //alert(`Cantidad de productos en el carrito: ${cantidad}`);
-      }
+    }
+
+    function buy(){
+        alert(`hola comprando`);
+    }
+    
+      
 
   return <> 
         <div>Detalle del producto</div>
@@ -36,7 +42,7 @@ function ItemDetail({ producto }){
                 <td>{producto.title}</td>
                 <td>{producto.price}</td>
                 <td><img src={producto.pictureUrl} alt={producto.title} height={150} width={150} /> </td>
-                <td>{online ? <ItemCount stock={10} initial={0} onAdd={onAdd}/> : <Link to="/cart"><button >Terminar compra</button></Link>} </td>
+                <td>{online ? <ItemCount stock={10} initial={0} onAdd={onAdd}/> : <Link to="/cart"><button onClick="">Terminar compra</button></Link>} </td>
 
                 
 

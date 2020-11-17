@@ -27,6 +27,8 @@ function App() {
             </Route>  
         </Switch>  
       </BrowserRouter>
+
+      <Cart />
     </>
   );
 }

@@ -1,10 +1,14 @@
-import React from "react";
+import React, {useContext} from "react";
+
+const Context = React.createContext();
 
 function Cart(){
 
   return <> 
     
-        <p>finalizando compra</p>
+        <Context.Consumer >
+            {(cantidad) => (<p>{cantidad}</p>)}
+        </Context.Consumer>
     </>
 
   
