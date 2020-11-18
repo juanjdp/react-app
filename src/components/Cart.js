@@ -2,7 +2,7 @@ import React, {useContext} from "react";
 import Table from 'react-bootstrap/Table'
 import {useCartContext} from './CartContext'
 
-const ValueContext = React.createContext();
+//const ValueContext = React.createContext();
 
 function Cart(){
 
