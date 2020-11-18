@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-function ItemCount({ stock, initial, onAdd }){
+function ItemCount({ stock, initial, producto, onAdd }){
 
   const [contador, setContador] = useState(initial)
   
@@ -22,7 +22,7 @@ function ItemCount({ stock, initial, onAdd }){
       <button onClick={addClick}>+</button>
       <br />
       <button
-        onClick={() => onAdd(contador)}
+        onClick={() => onAdd(contador, producto)}
       >
         Agregar
       </button>
