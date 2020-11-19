@@ -32,8 +32,8 @@ function ItemDetail({ producto }){
         <tbody>
             
                 <tr>
-                <td>{producto.id} </td>
-                <td>{producto.title}</td>
+                <td>{producto.description} </td>
+                <td>{producto.description}</td>
                 <td>{producto.price}</td>
                 <td><img src={producto.pictureUrl} alt={producto.title} height={150} width={150} /> </td>
                 <td>{online ? <ItemCount stock={10} initial={0} onAdd={onAdd}/> : <Link to="/cart"><button >Terminar compra</button></Link>} </td>
