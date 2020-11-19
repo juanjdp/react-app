@@ -21,10 +21,6 @@ function ItemDetail({ producto }){
         setOnline(contador > 0 ? false : true);
         //alert(`Cantidad de productos en el carrito: ${cantidad}`);
     }
-
-    function buy(){
-        alert(`hola comprando`);
-    }
     
       
 

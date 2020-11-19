@@ -21,11 +21,12 @@ export default function CartProvider({children, defaultCart}){
   }
 
   function remove(itemId){
-      console.log('remove');
-      let cartAux=cart;
-      let index = cart.indexOf(itemId);
-      cart.splice(index,1);
-      setCard([cart]);
+      console.log('remove', itemId);
+
+      const items = cart.filter(item => item.id !== itemId);
+
+      console.log(items);
+      setCard([...items]);
   }
 
   function clear(){
