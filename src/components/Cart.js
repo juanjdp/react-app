@@ -1,7 +1,7 @@
 import React, {useContext} from "react";
 import Table from 'react-bootstrap/Table'
 import {useCartContext} from './CartContext'
-
+import "bootstrap/dist/css/bootstrap.min.css";
 //const ValueContext = React.createContext();
 
 function Cart(){
@@ -35,36 +35,38 @@ function Cart(){
           <h3>No hay productos en el carrito</h3>
       </div>
        <div style={{ display: total> 0 ? "block" : "none" }}>
+
+
+
+
        
-        <Table striped bordered hover >
-        <thead>
-            <tr>
-            <th>Id</th>
-            <th>Description</th>
-            <th>Price</th>
-            <th>Cantidad</th>
-            <th>Acciones</th>
-            </tr>
-        </thead>
-        <tbody>
+ 
                     {
                     
                     cart.map(p => ( 
-                            <tr>
-                            <td>{p.id}</td>
-                            <td>{p.title}</td>
-                            <td>{p.price}</td>
-                            <td>{p.quatity}</td>
-                            <button onClick={() => del(p)}>Eliminar</button>
-                            </tr>                         
+
+                      <div class="row">
+                      <div class="col-sm-6 col-md-4">
+                        <div class="thumbnail">
+                          <div class="caption">
+                            <h3>Thumbnail label</h3>
+                            <p>{p.title}</p>
+                            
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+
+                             
                     ))}  
-        </tbody> 
+        
 
         <div style={{justifyContent:'right', alignItems:'right'}}>
             <h4> {`Total de la compra: ${sum}`}</h4>
         </div>
                  
-        </Table>  
+         
         </div>
     </> 
   )
