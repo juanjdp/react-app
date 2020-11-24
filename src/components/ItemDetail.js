@@ -9,8 +9,6 @@ function ItemDetail({ producto }){
     const [cantidad, setCantidad] = useState(0);
     const [online, setOnline]=useState(true);
 
-    console.log('producto::::::', producto)
-
     function onAdd(contador){
         setCantidad(contador);
         setOnline(contador > 0 ? false : true);
@@ -30,18 +28,18 @@ function ItemDetail({ producto }){
             </tr>
         </thead>
         <tbody>
-            
+        {producto.map(p => (
                 <tr>
-                <td>{producto.id} </td>
-                <td>{producto.title}</td>
-                <td>{producto.price}</td>
-                <td><img src={producto.pictureUrl} alt={producto.title} height={150} width={150} /> </td>
+                <td>{p.categoryId} </td>
+                <td>{p.title}</td>
+                <td>{p.price}</td>
+                <td><img src={p.pictureUrl} alt={p.title} height={150} width={150} /> </td>
                 <td>{online ? <ItemCount stock={10} initial={0} onAdd={onAdd}/> : <Link to="/cart"><button >Terminar compra</button></Link>} </td>
 
                 
 
                 </tr>
-              
+               ))}  
             </tbody> 
         </Table>             
     </>
