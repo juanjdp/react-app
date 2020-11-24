@@ -38,24 +38,31 @@ function Cart(){
 
 
 
-
+       <Table striped bordered hover >
+        <thead>
+            <tr>
+            <th>Id</th>
+            <th>Description</th>
+            <th>Price</th>
+            <th>Cantidad</th>
+            <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
        
  
                     {
                     
                     cart.map(p => ( 
 
-                      <div class="row">
-                      <div class="col-sm-6 col-md-4">
-                        <div class="thumbnail">
-                          <div class="caption">
-                            <h3>Thumbnail label</h3>
-                            <p>{p.title}</p>
-                            
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+                      <tr>
+                      <td>{p.id}</td>
+                      <td>{p.title}</td>
+                      <td>{p.price}</td>
+                      <td>{p.quatity}</td>
+                      <button onClick={() => del(p)}>Eliminar</button>
+                      </tr>
+                           
 
 
                              
@@ -67,6 +74,9 @@ function Cart(){
         </div>
                  
          
+        </tbody> 
+
+        </Table>  
         </div>
     </> 
   )
