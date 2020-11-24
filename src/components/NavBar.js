@@ -4,7 +4,7 @@ import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import CartWidget from "./CartWidget";
-
+import { NavLink } from 'react-router-dom'
 const CartContext = React.createContext();
 
 export default function NavBar() {
@@ -15,7 +15,9 @@ export default function NavBar() {
         { valor }
     </p>
       <Navbar bg="light" expand="lg">
-        <Navbar.Brand href="/"><img height="60" src="./logo.png" ></img></Navbar.Brand>
+      <Navbar.Brand >
+            <NavLink to={`/`} activeClassName="currentCategory"><img height="60" src="./logo.png" ></img></NavLink>
+        </Navbar.Brand>
         <Navbar.Toggle />
         <Navbar.Collapse>
           <Nav className="mr-auto">
