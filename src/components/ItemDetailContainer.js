@@ -9,7 +9,7 @@ import 'firebase/firestore';
 
 function ItemDetailContainer(){
 
-  const [producto, setProducto] = useState([]);
+  const [producto, setProducto] = useState({});
   const [error, setError] = useState(null);
 
   const {id} = useParams();
@@ -25,16 +25,28 @@ function ItemDetailContainer(){
           if (querySnapshot.size===0){
             console.log('No result');
           };
+
+          querySnapshot.forEach(function(doc) {
+            // doc.data() is never undefined for query doc snapshots
+            console.log(doc.id, " => ", doc.data());
+            //setProducto( {id: doc.id,...doc.data()} );
+            setProducto( {id: doc.id,...doc.data()} );
+          });
+
+          console.log('producto obtenido:::::',producto);
+
+          //setProducto(querySnapshot.docs[0]);
           
           
-          setProducto(
+          /*setProducto(
             querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }))
-          );
+          );*/
         })
   }, [id]);
 
   return <> 
     {error && <p>{error}</p>}
+    
     <ItemDetail producto={producto}/>
   </>
 

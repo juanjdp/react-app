@@ -3,8 +3,6 @@ import React, { useState } from "react";
 function ItemCount({ stock, initial, producto, onAdd }){
 
   const [contador, setContador] = useState(initial)
-
-  console.log('ITEMCOUNT:::', producto)
   
 
   function addClick() {
