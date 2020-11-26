@@ -3,9 +3,17 @@ import React, {useContext} from "react";
 import Table from 'react-bootstrap/Table'
 import {useCartContext} from './CartContext'
 import "bootstrap/dist/css/bootstrap.min.css";
-//const ValueContext = React.createContext();
+import {getFirestore,  } from './../firebase/index'
+import * as firebase from 'firebase/app';
+import 'firebase/firestore';
+import useTextInput from './useTextInput';
+import InputField from './InputField';
 
 function Cart(){
+
+  const nameInput = useTextInput("");
+  const phoneInput = useTextInput("");
+  const emailInput = useTextInput("");
 
 
 
@@ -28,6 +36,40 @@ function Cart(){
   function del(producto){
     remove(producto.id);
   }
+
+  
+    
+    async function createOrder() { 
+      console.log(`Procesando su orden Sr/Srta ${nameInput.value}`);
+      //debugger;       
+      const newOrder = {            
+         buyer: { name: nameInput.value, phone: phoneInput.value, email: emailInput.value },            
+         items: [    
+          cart.map(p => ( 
+                { id: p.id, title: p.title, price: p.price, quantity: p.quatity }                
+           ))        
+          ],  
+        date: firebase.firestore.FieldValue.serverTimestamp(),            
+        total: 500,        
+      }; 
+      console.log('Order:::', newOrder);
+      /*const db=getFirestore();
+      const orders=db.collection("orders");
+  
+      /*orders.add(newOrder).then(id => {            
+        console.log('Order created with id: ', id);        
+      });*/
+  
+      /*try{
+        const doc=await orders.add(newOrder);
+        console.log('Orden generada # ', doc.id)
+      }catch(error){
+        console.log('Error')
+      }*/
+  
+  
+    }
+  
 
   return ( 
 
@@ -74,11 +116,35 @@ function Cart(){
         <div style={{justifyContent:'right', alignItems:'right'}}>
             <h4> {`Total de la compra: ${sum}`}</h4>
         </div>
+
+
                  
          
         </tbody> 
 
-        </Table>  
+        </Table> 
+        <div>
+            <InputField title="Nombre">
+              <input {...nameInput} />
+            </InputField>
+
+            <InputField title="Apellido">
+              <input {...phoneInput} />
+            </InputField>
+
+            <InputField title="Correo">
+              <input {...emailInput} />
+            </InputField>
+        </div>  
+
+        {
+        <button
+          disabled={!nameInput.value || !phoneInput.value || !emailInput.value}
+          onClick={createOrder}
+        >
+          Crear orden
+        </button>
+      } 
         </div>
     </> 
   )
