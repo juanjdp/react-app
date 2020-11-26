@@ -19,9 +19,9 @@ function ItemListContainer({ title }){
     const db = getFirestore();
     const itemCollection = db.collection("items");
 
-    const priceCollections = itemCollection.where('price','<',500);
+    //const priceCollections = itemCollection.where('price','<',500);
 
-    priceCollections.get().then((querySnapshot) => {
+    itemCollection.get().then((querySnapshot) => {
       if (querySnapshot.size===0){
         console.log('No result');
       };
