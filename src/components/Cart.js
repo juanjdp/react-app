@@ -1,44 +1,86 @@
-import React from "react";
-import * as firebase from 'firebase/app';
-import 'firebase/firestore';
-import {getFirestore} from './../firebase/index'
+
+import React, {useContext} from "react";
+import Table from 'react-bootstrap/Table'
+import {useCartContext} from './CartContext'
+import "bootstrap/dist/css/bootstrap.min.css";
+//const ValueContext = React.createContext();
 
 function Cart(){
 
-  async function createOrder() { 
-    debugger;       
-    const newOrder = {            
-       buyer: { name: 'Poli', phone: '+541143432323', email: 'asd@asd' },            
-       items: [                
-         { id: '1', title: 'zapas', price: 200, quantity: 2 },                
-         { id: '2', title: 'gorro', price: 100, quantity: 1 },            
-        ],  
-      date: firebase.firestore.FieldValue.serverTimestamp(),            
-      total: 500,        
-    }; 
-    const db=getFirestore();
-    const orders=db.collection("orders");
-
-    /*orders.add(newOrder).then(id => {            
-      console.log('Order created with id: ', id);        
-    });*/
-
-    try{
-      const doc=await orders.add(newOrder);
-      console.log('Orden generada # ', doc.id)
-    }catch(error){
-      console.log('Error')
-    }
 
 
-  }
+  const  {cart, remove}  = useCartContext();
+  let total=cart.length;
+  //var total = cart.reduce(function(a, b){ return a + b; });
+  /*cart.map(p => ( 
+    total=(total+p.price))
+  );*/
+  //cart.map(p => ( total=total+p.price));
 
-  return <> 
-    
-        <p>finalizando compra</p>
-        <p><button onClick={createOrder}>Crear orden</button></p>
-    </>
+  let sum = cart.reduce(function(prev, current) {
+    return prev + +(current.price*current.quatity)
+  }, 0);
+
+
 
   
+  
+  function del(producto){
+    remove(producto.id);
+  }
+
+  return ( 
+
+      <>
+      <div>Contenido del carrito</div>
+      <div style={{ display: total === 0 ? "block" : "none" }}>
+          <h3>No hay productos en el carrito</h3>
+      </div>
+       <div style={{ display: total> 0 ? "block" : "none" }}>
+
+
+
+       <Table striped bordered hover >
+        <thead>
+            <tr>
+            <th>Id</th>
+            <th>Description</th>
+            <th>Price</th>
+            <th>Cantidad</th>
+            <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+       
+ 
+                    {
+                    
+                    cart.map(p => ( 
+
+                      <tr>
+                      <td>{p.id}</td>
+                      <td>{p.title}</td>
+                      <td>{p.price}</td>
+                      <td>{p.quatity}</td>
+                      <button onClick={() => del(p)}>Eliminar</button>
+                      </tr>
+                           
+
+
+                             
+                    ))}  
+        
+
+        <div style={{justifyContent:'right', alignItems:'right'}}>
+            <h4> {`Total de la compra: ${sum}`}</h4>
+        </div>
+                 
+         
+        </tbody> 
+
+        </Table>  
+        </div>
+    </> 
+  )
 }
 export default Cart;
