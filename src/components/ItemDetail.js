@@ -13,6 +13,9 @@ function ItemDetail({ producto }){
     const [online, setOnline]=useState(true);
 
 
+    console.log('ItemDetail::::', producto)
+
+
     function onAdd(contador, producto){
         setCantidad(contador);
 
@@ -40,11 +43,11 @@ function ItemDetail({ producto }){
         <tbody>
         
                 <tr>
-                    <td>{producto.categoryId} </td>
+                    <td>{producto.id} </td>
                     <td>{producto.title}</td>
                     <td>{producto.price}</td>
                     <td><img src={producto.pictureUrl} alt={producto.title} height={150} width={150} /> </td>
-                    <td>{online ? <ItemCount stock={10} initial={0} onAdd={onAdd}/> : <Link to="/cart"><button >Terminar compra</button></Link>} </td>
+                    <td>{online ? <ItemCount stock={10} initial={0} producto={producto} onAdd={onAdd}/> : <Link to="/cart"><button >Terminar compra</button></Link>} </td>
                 </tr>
                 
             </tbody> 

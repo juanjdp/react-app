@@ -3,11 +3,11 @@ import React, { useState } from "react";
 function ItemCount({ stock, initial, producto, onAdd }){
 
   const [contador, setContador] = useState(initial)
-  
 
   function addClick() {
       if (contador<stock)
        setContador(contador + 1);
+
   }
 
   function subtractionClick() {
