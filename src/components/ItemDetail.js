@@ -15,6 +15,8 @@ function ItemDetail({ producto }){
 
     function onAdd(contador, producto){
         setCantidad(contador);
+
+        console.log('onAdd::::',producto)
         
         add(producto, contador);
         setOnline(contador > 0 ? false : true);
@@ -38,13 +40,11 @@ function ItemDetail({ producto }){
         <tbody>
         {producto.map(p => (
                 <tr>
-
-                <td>{producto.id} </td>
-                <td>{producto.title}</td>
-                <td>{producto.price}</td>
-                <td><img src={producto.pictureUrl} alt={producto.title} height={150} width={150} /> </td>
-                <td>{online ? <ItemCount stock={10} initial={0} producto={producto} onAdd={onAdd}/> : <Link to="/cart"><button onClick="">Terminar compra</button></Link>} </td>
-
+                    <td>{p.categoryId} </td>
+                    <td>{p.title}</td>
+                    <td>{p.price}</td>
+                    <td><img src={p.pictureUrl} alt={p.title} height={150} width={150} /> </td>
+                    <td>{online ? <ItemCount stock={10} initial={0} onAdd={onAdd}/> : <Link to="/cart"><button >Terminar compra</button></Link>} </td>
                 </tr>
                ))}  
             </tbody> 

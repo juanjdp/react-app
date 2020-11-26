@@ -14,6 +14,8 @@ function ItemDetailContainer(){
 
   const {id} = useParams();
 
+  console.log ('ID:::::',id)
+
   useEffect(() => {
         const db = getFirestore();
         const itemCollection = db.collection("items");

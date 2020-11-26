@@ -7,6 +7,8 @@ import "../index.css";
 
 function ItemList({ productos }){
 
+    console.log(productos)
+
 
   return <> 
         <div>Listado de productos</div>
