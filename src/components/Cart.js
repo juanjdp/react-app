@@ -1,5 +1,5 @@
 
-import React, {useContext} from "react";
+import React from "react";
 import Table from 'react-bootstrap/Table'
 import {useCartContext} from './CartContext'
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -44,28 +44,28 @@ function Cart(){
       //debugger;       
       const newOrder = {            
          buyer: { name: nameInput.value, phone: phoneInput.value, email: emailInput.value },            
-         items: [    
+         items:     
           cart.map(p => ( 
                 { id: p.id, title: p.title, price: p.price, quantity: p.quatity }                
            ))        
-          ],  
+          ,  
         date: firebase.firestore.FieldValue.serverTimestamp(),            
         total: 500,        
       }; 
       console.log('Order:::', newOrder);
-      /*const db=getFirestore();
+      const db=getFirestore();
       const orders=db.collection("orders");
   
       /*orders.add(newOrder).then(id => {            
         console.log('Order created with id: ', id);        
       });*/
   
-      /*try{
+      try{
         const doc=await orders.add(newOrder);
         console.log('Orden generada # ', doc.id)
       }catch(error){
-        console.log('Error')
-      }*/
+        console.log('Error', error);
+      }
   
   
     }

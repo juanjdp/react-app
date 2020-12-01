@@ -12,10 +12,6 @@ function ItemDetail({ producto }){
     const [cantidad, setCantidad] = useState(0);
     const [online, setOnline]=useState(true);
 
-
-    console.log('ItemDetail::::', producto)
-
-
     function onAdd(contador, producto){
         setCantidad(contador);
 
@@ -26,8 +22,6 @@ function ItemDetail({ producto }){
         //alert(`Cantidad de productos en el carrito: ${cantidad}`);
     }
     
-      
-
   return <> 
         <div>Detalle del producto</div>
         <Table striped bordered hover >

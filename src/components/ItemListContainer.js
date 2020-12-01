@@ -19,8 +19,6 @@ function ItemListContainer({ title }){
     const db = getFirestore();
     const itemCollection = db.collection("items");
 
-    //const priceCollections = itemCollection.where('price','<',500);
-
     itemCollection.get().then((querySnapshot) => {
       if (querySnapshot.size===0){
         console.log('No result');
@@ -30,19 +28,10 @@ function ItemListContainer({ title }){
       );
     })
 
-
-    /*Item().then(
-      result => {
-        setList(result);
-      },
-      err => {
-        setError(err);
-      }
-    );*/
   }, []);
 
   return <> 
-    <p><spam style={styleTitle} >{title}</spam></p>
+    <p>{title}</p>
     {error && <p>{error}</p>}
     <ItemList productos={list}/>
     </>

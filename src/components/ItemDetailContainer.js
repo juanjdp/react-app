@@ -14,34 +14,30 @@ function ItemDetailContainer(){
 
   const {id} = useParams();
 
-  console.log ('ID:::::',id)
-
   useEffect(() => {
-        const db = getFirestore();
-        const itemCollection = db.collection("items");
-        const priceCollections = itemCollection.where(firebase.firestore.FieldPath.documentId(), '==', id).get();
 
-        priceCollections.then((querySnapshot) => {
-          if (querySnapshot.size===0){
-            console.log('No result');
-          };
+        try{
+          const db = getFirestore();
+          const itemCollection = db.collection("items");
+          const priceCollections = itemCollection.where(firebase.firestore.FieldPath.documentId(), '==', id).get();
+  
+          priceCollections.then((querySnapshot) => {
+            if (querySnapshot.size===0){
+              console.log('No result');
+            };
+  
+            querySnapshot.forEach(function(doc) {
+              setProducto( {id: doc.id,...doc.data()} );
+            });
+  
+            console.log('producto obtenido:::::',producto);
+  
+          })
+        }catch(error){
+          console.log('Error', error);
+          setError(error);
+        }
 
-          querySnapshot.forEach(function(doc) {
-            // doc.data() is never undefined for query doc snapshots
-            console.log(doc.id, " => ", doc.data());
-            //setProducto( {id: doc.id,...doc.data()} );
-            setProducto( {id: doc.id,...doc.data()} );
-          });
-
-          console.log('producto obtenido:::::',producto);
-
-          //setProducto(querySnapshot.docs[0]);
-          
-          
-          /*setProducto(
-            querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }))
-          );*/
-        })
   }, [id]);
 
   return <> 
