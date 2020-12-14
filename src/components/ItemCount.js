@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Button from "react-bootstrap/Button";
 
 function ItemCount({ stock, initial, producto, onAdd }){
 
@@ -17,15 +18,15 @@ function ItemCount({ stock, initial, producto, onAdd }){
 
   return <> 
     
-      <button onClick={subtractionClick}>-</button>
+      <Button variant="secondary" onClick={subtractionClick}>-</Button>
       {`  ${contador}  `}
-      <button onClick={addClick}>+</button>
+      <Button variant="secondary" onClick={addClick}>+</Button>
       <br />
-      <button
+      <Button variant="info"
         onClick={() => onAdd(contador, producto)}
       >
         Agregar
-      </button>
+      </Button>
     </>
 
   

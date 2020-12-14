@@ -32,7 +32,7 @@ export default function CartProvider({children, defaultCart}){
     setCard([]);
   }
 
-  return <CartContext.Provider value={{cart, add, remove}}>
+  return <CartContext.Provider value={{cart, add, remove, clear}}>
       {children}
   </CartContext.Provider>
 }

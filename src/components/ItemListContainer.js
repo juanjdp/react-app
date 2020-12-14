@@ -1,14 +1,9 @@
 import React, { useState, useEffect } from "react";
-import Item from "./Item";
 import ItemList from "./ItemList";
 
 import {getFirestore} from './../firebase/index'
 
-const styleTitle={ 
-    color: 'DarkGray', 
-    fontFamily: 'Trocchi',  
-    fontSize: 26
-}
+
 
 function ItemListContainer({ title }){
 

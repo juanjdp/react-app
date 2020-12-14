@@ -21,13 +21,13 @@ export default function NavBar() {
         <Navbar.Toggle />
         <Navbar.Collapse>
           <Nav className="mr-auto">
-            <Nav.Link href="#home">Quienes somos</Nav.Link>
-            <Nav.Link href="#home">Servicio al cliente</Nav.Link>
-            <Nav.Link href="#home">Como comprar</Nav.Link>
+            <Nav.Link><NavLink to={`/`} activeClassName="currentCategory">Quienes somos</NavLink></Nav.Link>
+            <Nav.Link><NavLink to={`/`} activeClassName="currentCategory">Como comprar</NavLink></Nav.Link>
             <NavDropdown title="Productos">
-              <NavDropdown.Item href="#action/1">Personal</NavDropdown.Item>
-              <NavDropdown.Item href="#action/2">Hogar</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3">Autos</NavDropdown.Item>
+              <NavDropdown.Item href="#action/1">Cubiertos</NavDropdown.Item>
+              <NavDropdown.Item href="#action/2">PLatos</NavDropdown.Item>
+              <NavDropdown.Item href="#action/3">Torteras</NavDropdown.Item>
+              <NavDropdown.Item href="#action/3">Ollas</NavDropdown.Item>
               <NavDropdown.Divider />
               <NavDropdown.Item href="#action/4">Otros</NavDropdown.Item>
             </NavDropdown>
