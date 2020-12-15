@@ -14,14 +14,26 @@ function ItemDetailContainer(){
 
   const {id} = useParams();
 
+
+
   useEffect(() => {
 
         try{
           const db = getFirestore();
           const itemCollection = db.collection("items");
-          const priceCollections = itemCollection.where(firebase.firestore.FieldPath.documentId(), '==', id).get();
+          let Collections=null;
+          const letters = /^[a-zA-Z]+$/;
+          console.log("Filtrando:::::",id);
+          if(id.match(letters)){ console.log("entre 1");
+            //Busca por categoria
+            Collections = itemCollection.where('categoryId', '==', id).get();
+          }else{ console.log("entre 2")
+            //Buscar por id
+            Collections = itemCollection.where(firebase.firestore.FieldPath.documentId(), '==', id).get();
+          }
+          
   
-          priceCollections.then((querySnapshot) => {
+          Collections.then((querySnapshot) => {
             if (querySnapshot.size===0){
               console.log('No result');
             };

@@ -24,10 +24,11 @@ export default function NavBar() {
             <Nav.Link><NavLink to={`/`} activeClassName="currentCategory">Quienes somos</NavLink></Nav.Link>
             <Nav.Link><NavLink to={`/`} activeClassName="currentCategory">Como comprar</NavLink></Nav.Link>
             <NavDropdown title="Productos">
-              <NavDropdown.Item href="#action/1">Cubiertos</NavDropdown.Item>
-              <NavDropdown.Item href="#action/2">PLatos</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3">Torteras</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3">Ollas</NavDropdown.Item>
+              
+              <NavDropdown.Item><NavLink to={`/item/Cubiertos`} activeClassName="currentCategory">Cubiertos</NavLink></NavDropdown.Item>
+              <NavDropdown.Item><NavLink to={`/item/Platos`} activeClassName="currentCategory">Platos</NavLink></NavDropdown.Item>
+              <NavDropdown.Item><NavLink to={`/item/Torteras`} activeClassName="currentCategory">Torteras</NavLink></NavDropdown.Item>
+              <NavDropdown.Item><NavLink to={`/item/Ollas`} activeClassName="currentCategory">Ollas</NavLink></NavDropdown.Item>
               <NavDropdown.Divider />
               <NavDropdown.Item href="#action/4">Otros</NavDropdown.Item>
             </NavDropdown>
