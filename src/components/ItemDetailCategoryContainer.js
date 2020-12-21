@@ -7,12 +7,12 @@ import * as firebase from 'firebase/app';
 import 'firebase/firestore';
 
 
-function ItemDetailContainer(){
+function ItemDetailCategoryContainer(){
 
   const [producto, setProducto] = useState({});
   const [error, setError] = useState(null);
 
-  const {id} = useParams();
+  const {category} = useParams();
 
 
 
@@ -21,7 +21,7 @@ function ItemDetailContainer(){
         try{
           const db = getFirestore();
           const itemCollection = db.collection("items");
-          let Collections = itemCollection.where(firebase.firestore.FieldPath.documentId(), '==', id).get();
+          let Collections = itemCollection.where('categoryId', '==', category).get();
 
           Collections.then((querySnapshot) => {
             if (querySnapshot.size===0){
@@ -32,7 +32,7 @@ function ItemDetailContainer(){
               setProducto( {id: doc.id,...doc.data()} );
             });
   
-            console.log('producto obtenido:::::',producto);
+            console.log('producto obtenido by category:::::',producto);
   
           })
         }catch(error){
@@ -40,7 +40,7 @@ function ItemDetailContainer(){
           setError(error);
         }
 
-  }, [id]);
+  }, [category]);
 
   return <> 
     {error && <p>{error}</p>}
@@ -51,4 +51,4 @@ function ItemDetailContainer(){
 
   
 }
-export default ItemDetailContainer;
+export default ItemDetailCategoryContainer;

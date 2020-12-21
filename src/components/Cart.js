@@ -16,11 +16,13 @@ import Alert from "react-bootstrap/Alert";
 function Cart(){
 
   const [id, setId] = useState(null);
+  const [error, setError] = useState(null);
   
 
   const nameInput = useTextInput("");
   const phoneInput = useTextInput("");
   const emailInput = useTextInput("");
+  const emailVerifyInput = useTextInput("");
 
 
 
@@ -50,31 +52,38 @@ function Cart(){
       let suma = cart.reduce(function(prev, current) {
         return prev + +(current.price*current.quatity)
       }, 0);
+
+      if (emailInput.value==emailVerifyInput.value){
+        
       
-      //debugger;       
-      const newOrder = {            
-         buyer: { name: nameInput.value, phone: phoneInput.value, email: emailInput.value },            
-         items:     
-          cart.map(p => ( 
-                { id: p.id, title: p.title, price: p.price, quantity: p.quatity }
-           ))        
-          ,  
-        date: firebase.firestore.FieldValue.serverTimestamp(),            
-        total: suma,        
-      }; 
-      console.log('Order:::', newOrder);
-      const db=getFirestore();
-      const orders=db.collection("orders");
-  
-      try{
-        const doc=await orders.add(newOrder);
-        console.log('Orden generada # ', doc.id)
-        setId(doc.id);
-        clear();
-      }catch(error){
-        console.log('Error', error);
-      }
-  
+      
+            //debugger;       
+            const newOrder = {            
+              buyer: { name: nameInput.value, phone: phoneInput.value, email: emailInput.value },            
+              items:     
+                cart.map(p => ( 
+                      { id: p.id, title: p.title, price: p.price, quantity: p.quatity }
+                ))        
+                ,  
+              date: firebase.firestore.FieldValue.serverTimestamp(),            
+              total: suma,        
+            }; 
+            console.log('Order:::', newOrder);
+            const db=getFirestore();
+            const orders=db.collection("orders");
+        
+            try{
+              const doc=await orders.add(newOrder);
+              console.log('Orden generada # ', doc.id)
+              setId(doc.id);
+              setError();
+              clear();
+            }catch(error){
+              console.log('Error', error);
+            }
+      }else{
+        setError('la verificacion de correo no coincide, por favor verifique');
+      }      
   
     }
   
@@ -85,6 +94,12 @@ function Cart(){
       {id &&
               <Alert variant="success">
               Su orden fue generada con exito, numero: {id}
+            </Alert>
+      }
+
+      {error &&
+              <Alert variant="danger">
+              {error}
             </Alert>
       }
 
@@ -156,6 +171,10 @@ function Cart(){
 
                   <InputField title="Correo">
                     <Form.Control size="sm" {...emailInput} />
+                  </InputField>
+
+                  <InputField title="Confirmacion de Correo">
+                    <Form.Control size="sm" {...emailVerifyInput} />
                   </InputField>
 
                   {
