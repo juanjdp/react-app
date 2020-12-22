@@ -25,10 +25,10 @@ export default function NavBar() {
             <Nav.Link><NavLink to={`/`} activeClassName="currentCategory">Como comprar</NavLink></Nav.Link>
             <NavDropdown title="Productos">
               
-              <NavDropdown.Item><NavLink to={`/itembycategory/Cubiertos`} activeClassName="currentCategory">Cubiertos</NavLink></NavDropdown.Item>
-              <NavDropdown.Item><NavLink to={`/itembycategory/Platos`} activeClassName="currentCategory">Platos</NavLink></NavDropdown.Item>
-              <NavDropdown.Item><NavLink to={`/itembycategory/Torteras`} activeClassName="currentCategory">Torteras</NavLink></NavDropdown.Item>
-              <NavDropdown.Item><NavLink to={`/itembycategory/Ollas`} activeClassName="currentCategory">Ollas</NavLink></NavDropdown.Item>
+              <NavDropdown.Item><NavLink to={`/categories/Cubiertos`} activeClassName="currentCategory">Cubiertos</NavLink></NavDropdown.Item>
+              <NavDropdown.Item><NavLink to={`/categories/Platos`} activeClassName="currentCategory">Platos</NavLink></NavDropdown.Item>
+              <NavDropdown.Item><NavLink to={`/categories/Torteras`} activeClassName="currentCategory">Torteras</NavLink></NavDropdown.Item>
+              <NavDropdown.Item><NavLink to={`/categories/Ollas`} activeClassName="currentCategory">Ollas</NavLink></NavDropdown.Item>
               <NavDropdown.Divider />
               <NavDropdown.Item href="#action/4">Otros</NavDropdown.Item>
             </NavDropdown>

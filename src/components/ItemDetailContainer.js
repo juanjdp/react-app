@@ -14,25 +14,20 @@ function ItemDetailContainer(){
 
   const {id} = useParams();
 
-
-
   useEffect(() => {
 
         try{
           const db = getFirestore();
           const itemCollection = db.collection("items");
-          let Collections = itemCollection.where(firebase.firestore.FieldPath.documentId(), '==', id).get();
+          let item = itemCollection.doc(id);
 
-          Collections.then((querySnapshot) => {
-            if (querySnapshot.size===0){
+          item.get().then((doc) => {
+            if (doc.size===0){
               console.log('No result');
             };
-  
-            querySnapshot.forEach(function(doc) {
-              setProducto( {id: doc.id,...doc.data()} );
-            });
-  
-            console.log('producto obtenido:::::',producto);
+
+            setProducto( {id: doc.id,...doc.data()} );
+            console.log('producto por id:::::',producto);
   
           })
         }catch(error){
